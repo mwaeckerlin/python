@@ -3,14 +3,12 @@ RUN $PKG_INSTALL python3
 RUN for file in \
     /usr/bin/python \
     /usr/lib/python* \
-    $(ldd /usr/bin/python | sed -n 's,.* \([^ ]*/lib/[^ ]*\) .*,\1,p'); \
+    $(for f in /usr/bin/python $(find /usr/lib/python* -name '*.so*'); do ldd $f; done 2> /dev/null | sed -n 's,.* \([^ ]*/lib/[^ ]*\) .*,\1,p' | sort | uniq); \
     do \
     path=${file%/*}; \
     test -d /tmp/root/$path || mkdir -p /tmp/root/$path; \
     cp -La $file /tmp/root/$file; \
     done
-RUN ls -R /tmp/root
-RUN /usr/bin/python --version
 
 FROM mwaeckerlin/scratch
 ENV CONTAINERNAME    "python"
