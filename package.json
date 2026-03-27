@@ -1,0 +1,8 @@
+{
+  "name": "@mwaeckerlin/python",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "docker compose build"
+  }
+}

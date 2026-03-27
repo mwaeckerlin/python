@@ -13,7 +13,8 @@ RUN for file in \
 FROM mwaeckerlin/scratch
 ENV CONTAINERNAME    "python"
 ENV PATH             ""
-CMD                  ["/usr/bin/python", "main.py"]
+ENTRYPOINT ["/usr/bin/python"]
+CMD ["main.py"]
 USER "${RUN_USER}"
 WORKDIR /app
 COPY --from=build /tmp/root /
