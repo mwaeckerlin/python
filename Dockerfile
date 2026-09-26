@@ -11,8 +11,8 @@ RUN for file in \
     done
 
 FROM mwaeckerlin/scratch
-ENV CONTAINERNAME    "python"
-ENV PATH             ""
+ENV CONTAINERNAME="python"
+ENV PATH=""
 ENTRYPOINT ["/usr/bin/python"]
 CMD ["main.py"]
 USER "${RUN_USER}"
